@@ -1,0 +1,3 @@
+//Definição dos parâmetros do trafo.
+New Transformer.TR1 Buses=[SourceBus 1] Conns=[Delta Wye] kVs=[11 0.416] kVAs=[200 200] %r=[0.4 0.4] XHL=4 sub=y
+//XHL=1

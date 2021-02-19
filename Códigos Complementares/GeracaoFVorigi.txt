@@ -1,0 +1,77 @@
+// Curva da Pmpp em pu vs temperatura
+// Pmpp vale 1 pu quando a temperatura for 25°C
+New XYCurve.MyPvsT npts=4  xarray=[0  25  75  100]  yarray=[1.2 1.0 0.8  0.6] 
+
+// Curva de eficiência por unidade (eficiência x potência em pu)
+New XYCurve.MyEff npts=4  xarray=[0.2  0.4  0.8  1.0]  yarray=[.86  .9  .93  .97]  
+!New XYCurve.MyEff npts=4  xarray=[1 1 1 1]  yarray=[.86  .9  .93  .97]  
+
+// Curva de irradiância por unidade (por unidade se a propriedade "irradiance" for definida)
+Redirect LoadShapePV.txt
+
+//Curva de temperatura com 24 pontos, representando a temperatura a cada hora do dia
+!New Tshape.MyTemp npts=24 interval=1 temp=[25 25 25 25 25 25 25 25 35 40 45 50 60 60 55 40 35 30 25 25 25 25 25 25]
+New Tshape.MyTemp npts=24 interval=1 temp=[25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25 25]
+
+
+
+
+// Definição dos sistemas fotovoltaicos (seguindo as propriedades do elemento PVSystem). Foi definido um SFV junto a cada carga do sistema.
+//kVA -> Potência máxima do inversor; Pmpp -> Potência do arranjo fotovoltaico para uma irradiância de 1kW/m²; irradiance -> valor de irradiância em kW/m², é usado como valor base para os multiplicadores da curva de carga; 
+
+
+New	PVSystem.PVLOAD1	Phases=1	Bus1=34.1	kv=0.416	irradiance=.493	kVA=6	Pmpp=7.98	effcurve=Myeff	P-TCurve=MyPvsT	Daily=Irradiancia1	TDaily=MyTemp %cutin=0.05	%cutout=0.05
+New	PVSystem.PVLOAD2	Phases=1	Bus1=47.2	kv=0.416	irradiance=.493	kVA=12.5	Pmpp=13.68	effcurve=Myeff	P-TCurve=MyPvsT	Daily=Irradiancia1	TDaily=MyTemp %cutin=0.05	%cutout=0.05
+New	PVSystem.PVLOAD3	Phases=1	Bus1=70.3	kv=0.416	irradiance=.493	kVA=6	Pmpp=7.98	effcurve=Myeff	P-TCurve=MyPvsT	Daily=Irradiancia1	TDaily=MyTemp %cutin=0.05	%cutout=0.05
+New	PVSystem.PVLOAD4	Phases=1	Bus1=73.1	kv=0.416	irradiance=.493	kVA=10	Pmpp=11.4	effcurve=Myeff	P-TCurve=MyPvsT	Daily=Irradiancia1	TDaily=MyTemp %cutin=0.05	%cutout=0.05
+New	PVSystem.PVLOAD5	Phases=1	Bus1=74.2	kv=0.416	irradiance=.493	kVA=6	Pmpp=7.98	effcurve=Myeff	P-TCurve=MyPvsT	Daily=Irradiancia1	TDaily=MyTemp %cutin=0.05	%cutout=0.05
+New	PVSystem.PVLOAD6	Phases=1	Bus1=83.2	kv=0.416	irradiance=.493	kVA=6	Pmpp=6.46	effcurve=Myeff	P-TCurve=MyPvsT	Daily=Irradiancia1	TDaily=MyTemp %cutin=0.05	%cutout=0.05
+New	PVSystem.PVLOAD7	Phases=1	Bus1=178.1	kv=0.416	irradiance=.493	kVA=10	Pmpp=11.4	effcurve=Myeff	P-TCurve=MyPvsT	Daily=Irradiancia1	TDaily=MyTemp %cutin=0.05	%cutout=0.05
+New	PVSystem.PVLOAD8	Phases=1	Bus1=208.3	kv=0.416	irradiance=.493	kVA=15	Pmpp=17.48	effcurve=Myeff	P-TCurve=MyPvsT	Daily=Irradiancia1	TDaily=MyTemp %cutin=0.05	%cutout=0.05
+New	PVSystem.PVLOAD9	Phases=3	Bus1=225.1.2.3	kv=0.416	irradiance=.493	kVA=27	Pmpp=28.5	effcurve=Myeff	P-TCurve=MyPvsT	Daily=Irradiancia1	TDaily=MyTemp %cutin=0.05	%cutout=0.05
+New	PVSystem.PVLOAD10	Phases=1	Bus1=248.1	kv=0.416	irradiance=.493	kVA=12.5	Pmpp=13.3	effcurve=Myeff	P-TCurve=MyPvsT	Daily=Irradiancia1	TDaily=MyTemp %cutin=0.05	%cutout=0.05
+New	PVSystem.PVLOAD11	Phases=1	Bus1=249.2	kv=0.416	irradiance=.493	kVA=6	Pmpp=6.46	effcurve=Myeff	P-TCurve=MyPvsT	Daily=Irradiancia1	TDaily=MyTemp %cutin=0.05	%cutout=0.05
+New	PVSystem.PVLOAD12	Phases=1	Bus1=264.1	kv=0.416	irradiance=.493	kVA=6	Pmpp=6.46	effcurve=Myeff	P-TCurve=MyPvsT	Daily=Irradiancia1	TDaily=MyTemp %cutin=0.05	%cutout=0.05
+New	PVSystem.PVLOAD13	Phases=1	Bus1=276.3	kv=0.416	irradiance=.493	kVA=10	Pmpp=11.4	effcurve=Myeff	P-TCurve=MyPvsT	Daily=Irradiancia1	TDaily=MyTemp %cutin=0.05	%cutout=0.05
+New	PVSystem.PVLOAD14	Phases=3	Bus1=289.1.2.3	kv=0.416	irradiance=.493	kVA=6	Pmpp=7.98	effcurve=Myeff	P-TCurve=MyPvsT	Daily=Irradiancia1	TDaily=MyTemp %cutin=0.05	%cutout=0.05
+New	PVSystem.PVLOAD15	Phases=1	Bus1=314.2	kv=0.416	irradiance=.493	kVA=6	Pmpp=6.84	effcurve=Myeff	P-TCurve=MyPvsT	Daily=Irradiancia1	TDaily=MyTemp %cutin=0.05	%cutout=0.05
+New	PVSystem.PVLOAD16	Phases=1	Bus1=320.2	kv=0.416	irradiance=.493	kVA=10	Pmpp=12.16	effcurve=Myeff	P-TCurve=MyPvsT	Daily=Irradiancia1	TDaily=MyTemp %cutin=0.05	%cutout=0.05
+New	PVSystem.PVLOAD17	Phases=1	Bus1=327.3	kv=0.416	irradiance=.493	kVA=6	Pmpp=6.46	effcurve=Myeff	P-TCurve=MyPvsT	Daily=Irradiancia1	TDaily=MyTemp %cutin=0.05	%cutout=0.05
+New	PVSystem.PVLOAD18	Phases=1	Bus1=337.3	kv=0.416	irradiance=.493	kVA=10	Pmpp=11.4	effcurve=Myeff	P-TCurve=MyPvsT	Daily=Irradiancia1	TDaily=MyTemp %cutin=0.05	%cutout=0.05
+New	PVSystem.PVLOAD19	Phases=1	Bus1=342.3	kv=0.416	irradiance=.493	kVA=12.5	Pmpp=12.54	effcurve=Myeff	P-TCurve=MyPvsT	Daily=Irradiancia1	TDaily=MyTemp %cutin=0.05	%cutout=0.05
+New	PVSystem.PVLOAD20	Phases=1	Bus1=349.1	kv=0.416	irradiance=.493	kVA=12.5	Pmpp=14.82	effcurve=Myeff	P-TCurve=MyPvsT	Daily=Irradiancia1	TDaily=MyTemp %cutin=0.05	%cutout=0.05
+New	PVSystem.PVLOAD21	Phases=1	Bus1=387.1	kv=0.416	irradiance=.493	kVA=6	Pmpp=6.46	effcurve=Myeff	P-TCurve=MyPvsT	Daily=Irradiancia1	TDaily=MyTemp %cutin=0.05	%cutout=0.05
+New	PVSystem.PVLOAD22	Phases=1	Bus1=388.1	kv=0.416	irradiance=.493	kVA=5	Pmpp=5.7	effcurve=Myeff	P-TCurve=MyPvsT	Daily=Irradiancia1	TDaily=MyTemp %cutin=0.05	%cutout=0.05
+New	PVSystem.PVLOAD23	Phases=1	Bus1=406.2	kv=0.416	irradiance=.493	kVA=12.5	Pmpp=13.3	effcurve=Myeff	P-TCurve=MyPvsT	Daily=Irradiancia1	TDaily=MyTemp %cutin=0.05	%cutout=0.05
+New	PVSystem.PVLOAD24	Phases=1	Bus1=458.3	kv=0.416	irradiance=.493	kVA=15	Pmpp=16.72	effcurve=Myeff	P-TCurve=MyPvsT	Daily=Irradiancia1	TDaily=MyTemp %cutin=0.05	%cutout=0.05
+New	PVSystem.PVLOAD25	Phases=1	Bus1=502.1	kv=0.416	irradiance=.493	kVA=6	Pmpp=7.6	effcurve=Myeff	P-TCurve=MyPvsT	Daily=Irradiancia1	TDaily=MyTemp %cutin=0.05	%cutout=0.05
+New	PVSystem.PVLOAD26	Phases=1	Bus1=522.2	kv=0.416	irradiance=.493	kVA=6	Pmpp=6.46	effcurve=Myeff	P-TCurve=MyPvsT	Daily=Irradiancia1	TDaily=MyTemp %cutin=0.05	%cutout=0.05
+New	PVSystem.PVLOAD27	Phases=1	Bus1=539.3	kv=0.416	irradiance=.493	kVA=6	Pmpp=7.98	effcurve=Myeff	P-TCurve=MyPvsT	Daily=Irradiancia1	TDaily=MyTemp %cutin=0.05	%cutout=0.05
+New	PVSystem.PVLOAD28	Phases=3	Bus1=556.1.2.3	kv=0.416	irradiance=.493	kVA=3	Pmpp=2.85	effcurve=Myeff	P-TCurve=MyPvsT	Daily=Irradiancia1	TDaily=MyTemp %cutin=0.05	%cutout=0.05
+New	PVSystem.PVLOAD29	Phases=1	Bus1=562.1	kv=0.416	irradiance=.493	kVA=12.5	Pmpp=14.44	effcurve=Myeff	P-TCurve=MyPvsT	Daily=Irradiancia1	TDaily=MyTemp %cutin=0.05	%cutout=0.05
+New	PVSystem.PVLOAD30	Phases=1	Bus1=563.3	kv=0.416	irradiance=.493	kVA=6	Pmpp=7.98	effcurve=Myeff	P-TCurve=MyPvsT	Daily=Irradiancia1	TDaily=MyTemp %cutin=0.05	%cutout=0.05
+New	PVSystem.PVLOAD31	Phases=1	Bus1=611.1	kv=0.416	irradiance=.493	kVA=6	Pmpp=7.98	effcurve=Myeff	P-TCurve=MyPvsT	Daily=Irradiancia1	TDaily=MyTemp %cutin=0.05	%cutout=0.05
+New	PVSystem.PVLOAD32	Phases=1	Bus1=614.3	kv=0.416	irradiance=.493	kVA=15	Pmpp=17.1	effcurve=Myeff	P-TCurve=MyPvsT	Daily=Irradiancia1	TDaily=MyTemp %cutin=0.05	%cutout=0.05
+New	PVSystem.PVLOAD33	Phases=1	Bus1=619.3	kv=0.416	irradiance=.493	kVA=15	Pmpp=15.58	effcurve=Myeff	P-TCurve=MyPvsT	Daily=Irradiancia1	TDaily=MyTemp %cutin=0.05	%cutout=0.05
+New	PVSystem.PVLOAD34	Phases=1	Bus1=629.1	kv=0.416	irradiance=.493	kVA=6	Pmpp=6.84	effcurve=Myeff	P-TCurve=MyPvsT	Daily=Irradiancia1	TDaily=MyTemp %cutin=0.05	%cutout=0.05
+New	PVSystem.PVLOAD35	Phases=1	Bus1=639.2	kv=0.416	irradiance=.493	kVA=16	Pmpp=17.48	effcurve=Myeff	P-TCurve=MyPvsT	Daily=Irradiancia1	TDaily=MyTemp %cutin=0.05	%cutout=0.05
+New	PVSystem.PVLOAD36	Phases=1	Bus1=676.2	kv=0.416	irradiance=.493	kVA=6	Pmpp=7.6	effcurve=Myeff	P-TCurve=MyPvsT	Daily=Irradiancia1	TDaily=MyTemp %cutin=0.05	%cutout=0.05
+New	PVSystem.PVLOAD37	Phases=3	Bus1=682.1.2.3	kv=0.416	irradiance=.493	kVA=10	Pmpp=11.02	effcurve=Myeff	P-TCurve=MyPvsT	Daily=Irradiancia1	TDaily=MyTemp %cutin=0.05	%cutout=0.05
+New	PVSystem.PVLOAD38	Phases=1	Bus1=688.1	kv=0.416	irradiance=.493	kVA=12.5	Pmpp=13.68	effcurve=Myeff	P-TCurve=MyPvsT	Daily=Irradiancia1	TDaily=MyTemp %cutin=0.05	%cutout=0.05
+New	PVSystem.PVLOAD39	Phases=1	Bus1=701.3	kv=0.416	irradiance=.493	kVA=5	Pmpp=5.7	effcurve=Myeff	P-TCurve=MyPvsT	Daily=Irradiancia1	TDaily=MyTemp %cutin=0.05	%cutout=0.05
+New	PVSystem.PVLOAD40	Phases=1	Bus1=702.2	kv=0.416	irradiance=.493	kVA=5	Pmpp=4.56	effcurve=Myeff	P-TCurve=MyPvsT	Daily=Irradiancia1	TDaily=MyTemp %cutin=0.05	%cutout=0.05
+New	PVSystem.PVLOAD41	Phases=1	Bus1=755.2	kv=0.416	irradiance=.493	kVA=6	Pmpp=7.6	effcurve=Myeff	P-TCurve=MyPvsT	Daily=Irradiancia1	TDaily=MyTemp %cutin=0.05	%cutout=0.05
+New	PVSystem.PVLOAD42	Phases=1	Bus1=778.3	kv=0.416	irradiance=.493	kVA=6	Pmpp=7.98	effcurve=Myeff	P-TCurve=MyPvsT	Daily=Irradiancia1	TDaily=MyTemp %cutin=0.05	%cutout=0.05
+New	PVSystem.PVLOAD43	Phases=1	Bus1=780.3	kv=0.416	irradiance=.493	kVA=5	Pmpp=5.32	effcurve=Myeff	P-TCurve=MyPvsT	Daily=Irradiancia1	TDaily=MyTemp %cutin=0.05	%cutout=0.05
+New	PVSystem.PVLOAD44	Phases=1	Bus1=785.2	kv=0.416	irradiance=.493	kVA=5	Pmpp=5.7	effcurve=Myeff	P-TCurve=MyPvsT	Daily=Irradiancia1	TDaily=MyTemp %cutin=0.05	%cutout=0.05
+New	PVSystem.PVLOAD45	Phases=1	Bus1=813.2	kv=0.416	irradiance=.493	kVA=20	Pmpp=21.66	effcurve=Myeff	P-TCurve=MyPvsT	Daily=Irradiancia1	TDaily=MyTemp %cutin=0.05	%cutout=0.05
+New	PVSystem.PVLOAD46	Phases=1	Bus1=817.1	kv=0.416	irradiance=.493	kVA=10	Pmpp=11.02	effcurve=Myeff	P-TCurve=MyPvsT	Daily=Irradiancia1	TDaily=MyTemp %cutin=0.05	%cutout=0.05
+New	PVSystem.PVLOAD47	Phases=1	Bus1=835.3	kv=0.416	irradiance=.493	kVA=5	Pmpp=4.56	effcurve=Myeff	P-TCurve=MyPvsT	Daily=Irradiancia1	TDaily=MyTemp %cutin=0.05	%cutout=0.05
+New	PVSystem.PVLOAD48	Phases=1	Bus1=860.1	kv=0.416	irradiance=.493	kVA=10	Pmpp=12.16	effcurve=Myeff	P-TCurve=MyPvsT	Daily=Irradiancia1	TDaily=MyTemp %cutin=0.05	%cutout=0.05
+New	PVSystem.PVLOAD49	Phases=3	Bus1=861.1.2.3	kv=0.416	irradiance=.493	kVA=10	Pmpp=11.59	effcurve=Myeff	P-TCurve=MyPvsT	Daily=Irradiancia1	TDaily=MyTemp %cutin=0.05	%cutout=0.05
+New	PVSystem.PVLOAD50	Phases=1	Bus1=886.2	kv=0.416	irradiance=.493	kVA=6	Pmpp=7.98	effcurve=Myeff	P-TCurve=MyPvsT	Daily=Irradiancia1	TDaily=MyTemp %cutin=0.05	%cutout=0.05
+New	PVSystem.PVLOAD51	Phases=1	Bus1=896.1	kv=0.416	irradiance=.493	kVA=10	Pmpp=9.88	effcurve=Myeff	P-TCurve=MyPvsT	Daily=Irradiancia1	TDaily=MyTemp  %cutin=0.05	%cutout=0.05
+New	PVSystem.PVLOAD52	Phases=1	Bus1=898.2	kv=0.416	irradiance=.493	kVA=6	Pmpp=6.84	effcurve=Myeff	P-TCurve=MyPvsT	Daily=Irradiancia1	TDaily=MyTemp %cutin=0.05	%cutout=0.05
+New	PVSystem.PVLOAD53	Phases=1	Bus1=899.2	kv=0.416	irradiance=.493	kVA=12.5	Pmpp=13.68	effcurve=Myeff	P-TCurve=MyPvsT	Daily=Irradiancia1	TDaily=MyTemp %cutin=0.05	%cutout=0.05
+New	PVSystem.PVLOAD54	Phases=1	Bus1=900.1	kv=0.416	irradiance=.493	kVA=10	Pmpp=11.02	effcurve=Myeff	P-TCurve=MyPvsT	Daily=Irradiancia1	TDaily=MyTemp %cutin=0.05	%cutout=0.05
+New	PVSystem.PVLOAD55	Phases=1	Bus1=906.3	kv=0.416	irradiance=.493	kVA=6	Pmpp=7.98	effcurve=Myeff	P-TCurve=MyPvsT	Daily=Irradiancia1	TDaily=MyTemp %cutin=0.05	%cutout=0.05
